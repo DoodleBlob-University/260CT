@@ -1,29 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="main" fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="500.0" prefHeight="669.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <!-- Menu Bar -->
       <MenuBar id="menuBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu id="menuFile" mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem id="MenuFileClose" mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu id="menuEdit" mnemonicParsing="false" text="Edit">
-            <items>
-               <!---->
-            </items>
-          </Menu>
+            <Menu id="menuFile" mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem fx:id="MenuFileLogout" mnemonicParsing="false" text="Logout" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                    <MenuItem fx:id="MenuFileExit" mnemonicParsing="false" text="Close" />
+                </items>
+            </Menu>
+            <Menu fx:id="MenuMemberships" mnemonicParsing="false" text="Memberships" />
+            <Menu fx:id="MenuClasses" mnemonicParsing="false" text="Classes" />
+            <Menu fx:id="MenuInvoices" mnemonicParsing="false" text="Invoices" />
+            <Menu fx:id="MenuHelp" mnemonicParsing="false" text="Help">
+                <items>
+                    <!---->
+                </items>
+            </Menu>
         </menus>
       </MenuBar>
-      <!-- Main Application -->
-      <AnchorPane id="mainPane" layoutY="105.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+   <!-- Main Application -->
+      <AnchorPane id="mainPane" fx:id="mainPane" layoutY="105.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <Label layoutX="30.0" layoutY="28.0" text="Invoice Manager" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+     <!-- Search -->
+            <Label layoutX="42.0" layoutY="57.0" text="Search" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="60.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="27.0" layoutY="77.0" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0" />
+            <ChoiceBox layoutX="241.0" layoutY="90.0" prefHeight="31.0" prefWidth="85.0" AnchorPane.leftAnchor="241.0" AnchorPane.topAnchor="90.0">
+                <!-- choices -->
+            </ChoiceBox>
+     <!-- Filter -->
+            <Label layoutX="40.0" layoutY="70.0" text="Filters" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="140.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Accordion layoutX="27.0" layoutY="215.0" prefHeight="266.0" prefWidth="296.0" AnchorPane.bottomAnchor="208.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="170.0">
+              <panes>
+                <TitledPane animated="false" prefHeight="98.0" prefWidth="296.0" text="By Date">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </TitledPane>
+                <TitledPane animated="false" prefHeight="108.0" prefWidth="296.0" text="By Price">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </TitledPane>
+                  <TitledPane animated="false" layoutX="10.0" layoutY="41.0" prefHeight="234.0" prefWidth="296.0" text="By Status">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+     <!-- Actions -->
+            <Label layoutX="30.0" layoutY="448.0" text="Actions" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="30.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="40.0" layoutY="466.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="277.0" text="Create New Invoice" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="40.0" />
+            <Button layoutX="40.0" layoutY="504.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="277.0" text="Edit Selected Invoice" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="40.0" />
+            <Button layoutX="40.0" layoutY="543.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="277.0" text="Mark Invoice as Paid" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="40.0" />
+            <Button layoutX="40.0" layoutY="584.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="277.0" text="Delete Invoice" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" />
+            <TableView layoutX="340.0" layoutY="51.0" prefHeight="634.0" prefWidth="662.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn prefWidth="98.0" text="Invoice ID" />
+                <TableColumn prefWidth="119.0" text="Customer ID" />
+                  <TableColumn minWidth="0.0" prefWidth="102.0" text="Invoice Date" />
+                  <TableColumn prefWidth="79.0" text="Items" />
+                  <TableColumn prefWidth="116.0" text="Total Cost" />
+                  <TableColumn prefWidth="102.0" text="Paid" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
         
    </children>
 </AnchorPane>
