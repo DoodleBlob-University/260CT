@@ -6,17 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 //<---------------------->
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sportsandleisurevillage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ui/sportsandleisurevillage.fxml"));
         primaryStage.setTitle("Sports and Leisure Village | Management System");
-        primaryStage.setScene(new Scene(root, 750, 500));
+        primaryStage.setScene(new Scene(root/*, x, y*/));
         primaryStage.show();
     }
 
