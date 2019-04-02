@@ -1,5 +1,6 @@
 package sportsandleisurevillage.business;
 
+import javafx.fxml.FXML;
 import sportsandleisurevillage.data.InvoiceRepoImpl;
 
 import javafx.scene.control.Alert;
@@ -7,9 +8,12 @@ import sportsandleisurevillage.domain.Booking;
 import sportsandleisurevillage.domain.Customer;
 import sportsandleisurevillage.domain.Invoice;
 
+import javax.swing.table.TableColumn;
+import java.lang.reflect.Member;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 public class AdvisorController {
 
@@ -32,9 +36,6 @@ public class AdvisorController {
 	}
 
 	public ArrayList<Invoice> getTableValues() {
-
-
-
 		return this.list;
 	}
 

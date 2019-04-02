@@ -12,10 +12,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("ui/sportsandleisurevillage.fxml"));
-        primaryStage.setTitle("Sports and Leisure Village | Invoice System");
-        primaryStage.setScene(new Scene(root/*, x, y*/));
-        primaryStage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("ui/sportsandleisurevillage.fxml"));
+            primaryStage.setTitle("Sports and Leisure Village | Invoice System");
+            primaryStage.setScene(new Scene(root/*, x, y*/));
+            primaryStage.show();
     }
 
 
