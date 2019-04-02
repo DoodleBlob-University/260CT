@@ -10,8 +10,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -19,7 +17,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="main" fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="500.0" prefHeight="669.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportsandleisurevillage.ui.AdvisorUI">
+<AnchorPane id="main" fx:id="anchr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="500.0" prefHeight="669.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportsandleisurevillage.ui.AdvisorUI">
    <children>
       <!-- Menu Bar -->
       <MenuBar id="menuBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -35,92 +33,107 @@
             <Menu fx:id="MenuHelp" mnemonicParsing="false" text="Help" />
         </menus>
       </MenuBar>
-      <TabPane prefHeight="634.0" prefWidth="961.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
-        <tabs>
-          <Tab text="Invoices">
-               <content>
-               <!-- Main Application -->
-                  <AnchorPane id="mainPane" fx:id="mainPane">
-                     <children>
-                        <Label layoutX="30.0" layoutY="28.0" text="Invoice Manager" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                        </Label>
-                 <!-- Search -->
-                        <Label layoutX="42.0" layoutY="57.0" text="Search" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="60.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="27.0" layoutY="77.0" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0" />
-                        <ChoiceBox layoutX="241.0" layoutY="90.0" prefHeight="31.0" prefWidth="85.0" AnchorPane.leftAnchor="241.0" AnchorPane.topAnchor="90.0">
+   <!-- Main Application -->
+      <AnchorPane id="mainPane" fx:id="mainPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <Label layoutX="30.0" layoutY="28.0" text="Invoice Manager" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+     <!-- Search -->
+            <Label layoutX="42.0" layoutY="57.0" text="Search" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="60.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="27.0" layoutY="77.0" onAction="#searchFilterAction" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0" />
+            <ChoiceBox fx:id="searchoptions" layoutX="241.0" layoutY="90.0" prefHeight="31.0" prefWidth="85.0" AnchorPane.leftAnchor="241.0" AnchorPane.topAnchor="90.0">
                 <!-- choices -->
             </ChoiceBox>
-                 <!-- Filter -->
-                        <Label layoutX="40.0" layoutY="70.0" text="Filters" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="140.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Accordion layoutX="27.0" layoutY="215.0" prefHeight="266.0" prefWidth="296.0" AnchorPane.bottomAnchor="208.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="170.0">
-                          <panes>
-                            <TitledPane animated="false" prefHeight="98.0" prefWidth="296.0" text="By Date">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="135.0" prefWidth="294.0">
-                                       <children>
-                                          <DatePicker layoutX="16.0" layoutY="14.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0" />
-                                          <DatePicker layoutX="16.0" layoutY="68.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="70.0" />
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </TitledPane>
-                            <TitledPane animated="false" prefHeight="108.0" prefWidth="296.0" text="By Price">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                              </content>
-                            </TitledPane>
-                              <TitledPane animated="false" layoutX="10.0" layoutY="41.0" prefHeight="234.0" prefWidth="296.0" text="By Status">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="294.0">
-                                       <children>
-                                          <CheckBox layoutX="23.0" layoutY="14.0" mnemonicParsing="false" text="Pending" />
-                                          <CheckBox layoutX="166.0" layoutY="14.0" mnemonicParsing="false" text="Paid" />
-                                          <CheckBox layoutX="23.0" layoutY="47.0" mnemonicParsing="false" text="Overdue" />
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </TitledPane>
-                          </panes>
-                        </Accordion>
-                 <!-- Actions -->
-                        <Label layoutX="30.0" layoutY="448.0" text="Actions" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="30.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="40.0" layoutY="466.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="277.0" text="Create New Invoice" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="40.0" />
-                        <Button layoutX="40.0" layoutY="504.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="277.0" text="Edit Selected Invoice" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="40.0" />
-                        <Button layoutX="40.0" layoutY="543.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="277.0" text="Mark Invoice as Paid" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="40.0" />
-                        <Button layoutX="40.0" layoutY="584.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="277.0" text="Delete Invoice" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" />
-                        <TableView layoutX="340.0" layoutY="51.0" prefHeight="634.0" prefWidth="662.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
-                          <columns>
-                            <TableColumn prefWidth="98.0" text="Invoice ID" />
-                            <TableColumn prefWidth="119.0" text="Customer ID" />
-                              <TableColumn minWidth="0.0" prefWidth="102.0" text="Invoice Date" />
-                              <TableColumn prefWidth="79.0" text="Items" />
-                              <TableColumn prefWidth="116.0" text="Total Cost" />
-                              <TableColumn prefWidth="102.0" text="Paid" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content></Tab>
-          <Tab text="Customers" />
-            <Tab text="Bookings" />
-            <Tab text="Classes" />
-        </tabs>
-      </TabPane>
+     <!-- Filter -->
+            <Label layoutX="40.0" layoutY="70.0" text="Filters" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="140.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Accordion layoutX="27.0" layoutY="215.0" prefHeight="266.0" prefWidth="296.0" AnchorPane.bottomAnchor="208.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="170.0">
+              <panes>
+                <TitledPane animated="false" prefHeight="98.0" prefWidth="296.0" text="By Date">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="135.0" prefWidth="294.0">
+                           <children>
+                              <Label text="From:" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="datepickerfrom" layoutX="16.0" layoutY="14.0" onAction="#searchFilterAction" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <Label layoutX="24.0" layoutY="24.0" text="To:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="50.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="datepickerto" layoutX="16.0" layoutY="68.0" onAction="#searchFilterAction" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="50.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+                <TitledPane animated="false" prefHeight="108.0" prefWidth="296.0" text="By Price">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label text="From:" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="1.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="pricepickerfrom" onAction="#searchFilterAction" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <Label layoutX="23.0" layoutY="23.0" text="To" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="40.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="pricepickerto" layoutX="62.0" layoutY="27.0" onAction="#searchFilterAction" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
+                           </children></AnchorPane>
+                  </content>
+                </TitledPane>
+                  <TitledPane animated="false" layoutX="10.0" layoutY="41.0" prefHeight="222.0" prefWidth="296.0" text="By Status">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="294.0">
+                           <children>
+                              <CheckBox fx:id="requestbox" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchFilterAction" text="Requested" />
+                              <CheckBox fx:id="paidbox" layoutX="166.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchFilterAction" text="Paid" />
+                              <CheckBox fx:id="overduebox" layoutX="23.0" layoutY="47.0" mnemonicParsing="false" onAction="#searchFilterAction" text="Overdue" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+     <!-- Actions -->
+            <Label layoutX="30.0" layoutY="448.0" text="Actions" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="30.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="requestbutton" layoutX="40.0" layoutY="504.0" mnemonicParsing="false" onAction="#requestbutton" prefHeight="31.0" prefWidth="277.0" text="Request Invoice from Customer" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="40.0" />
+            <Button fx:id="paidbutton" layoutX="40.0" layoutY="543.0" mnemonicParsing="false" onAction="#paidbutton" prefHeight="31.0" prefWidth="277.0" text="Mark Invoice as Paid" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="40.0" />
+            <Button fx:id="deletebutton" layoutX="40.0" layoutY="584.0" mnemonicParsing="false" onAction="#deletebutton" prefHeight="32.0" prefWidth="277.0" text="Delete Invoice" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" />
+            <TableView layoutX="340.0" layoutY="51.0" prefHeight="634.0" prefWidth="662.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn prefWidth="98.0" text="Invoice ID" />
+                <TableColumn prefWidth="119.0" text="Customer ID" />
+                  <TableColumn minWidth="0.0" prefWidth="102.0" text="Invoice Date" />
+                  <TableColumn prefWidth="79.0" text="Items" />
+                  <TableColumn prefWidth="116.0" text="Total Cost" />
+                  <TableColumn prefWidth="102.0" text="Requested" />
+                  <TableColumn prefWidth="102.0" text="Paid" />
+                  <TableColumn prefWidth="102.0" text="Deadline" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
         
    </children>
 </AnchorPane>

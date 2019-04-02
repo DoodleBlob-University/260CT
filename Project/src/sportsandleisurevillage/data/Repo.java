@@ -1,28 +1,16 @@
 package sportsandleisurevillage.data;
 
-import java.sql.Connection;
-import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public interface Repo {
+	String url = "jdbc:mysql://charlesbarry.coventry.domains:3306/charlesb_260CT";
+	String username = "charlesb_charlie";
+	String password = "Password1234";
 
-	/**
-	 * 
-	 * @param conn
-	 */
-	ArrayList read(Connection conn);
-
-	/**
-	 * 
-	 * @param conn
-	 * @param list
-	 */
-	void write(Connection conn, ArrayList list);
-
-	/**
-	 * 
-	 * @param conn
-	 * @param list
-	 */
-	void update(Connection conn, ArrayList list);
-
+	ResultSet read();
+	void write();
+	void update();
+	void closeconn();
 }

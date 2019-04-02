@@ -1,5 +1,6 @@
 package sportsandleisurevillage.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Booking {
@@ -8,8 +9,6 @@ public class Booking {
 	private String type;
 	private Date date;
 	private int cost;
-	private Date purchaseTime;
-	private int customerId;
 
 	public int getId() {
 		return this.id;
@@ -27,26 +26,14 @@ public class Booking {
 		return this.cost;
 	}
 
-	public Date getPurchaseTime() {
-		return this.purchaseTime;
-	}
 
-	public int getCustomerId() {
-		return this.customerId;
-	}
-
-	/**
-	 * 
-	 * @param id
-	 * @param type
-	 * @param date
-	 * @param cost
-	 * @param purchaseTime
-	 * @param customerId
-	 */
-	public Booking(int id, String type, Date date, int cost, Date purchaseTime, int customerId) {
-		// TODO - implement Booking.Booking
-		throw new UnsupportedOperationException();
+	public Booking(int id, String type, String date, int cost) {
+		this.id = id;
+		this.type = type;
+		try{
+			this.date = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+		}catch(Exception e){e.printStackTrace();}
+		this.cost = cost;
 	}
 
 }
