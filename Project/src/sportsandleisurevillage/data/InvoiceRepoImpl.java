@@ -28,6 +28,9 @@ public class InvoiceRepoImpl implements Repo {
         try {
             stmt = conn.prepareStatement("SELECT * FROM Invoice");
             result = stmt.executeQuery();
+
+
+
         }catch(SQLException e){
             e.printStackTrace();
         }

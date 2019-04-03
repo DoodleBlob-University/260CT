@@ -25,10 +25,14 @@ public class AdvisorController {
 
 	private HashMap<Integer, Invoice> list = new HashMap<>();
 
+	public HashMap<Integer, Invoice> getList(){
+		return list;
+	}
+
 	public void markInvoiceAsPaid(int selected) {
-		System.out.println(selected);
 		boolean paidValue = list.get(selected).isPaid();
 		list.get(selected).setPaid(!paidValue);
+		createTable();
 
 		InvoiceRepoImpl updateRequested = new InvoiceRepoImpl(selected, "paid", !paidValue);
 		updateRequested.update();
@@ -38,6 +42,7 @@ public class AdvisorController {
 	public void requestInvoice(int selected) {
 		boolean requestedValue = list.get(selected).isRequested();
 		list.get(selected).setRequest(!requestedValue);
+		createTable();
 
 		InvoiceRepoImpl requestedUpdate = new InvoiceRepoImpl(selected, "requested", !requestedValue);
 		requestedUpdate.update();
@@ -49,6 +54,7 @@ public class AdvisorController {
 
 	public void deleteInvoice(int selected) {
 		list.remove(selected);//remove invoice from list
+		createTable();
 
 		InvoiceRepoImpl invoiceDelete = new InvoiceRepoImpl(selected);
 		invoiceDelete.delete();
@@ -60,32 +66,37 @@ public class AdvisorController {
 		//System.out.println(listValues);
 		return new ArrayList<>(listValues);
 	}
+	private ObservableList<tableObject> tablelist = FXCollections.observableArrayList();
+
+	private void createTable(){
+		tablelist.clear();
+		for (Invoice invoice: getTableValues()) {
+
+				tablelist.add(new tableObject(//int invoiceid, int customerid, Date invoicedate, int items, int totalcost, Boolean requested, Boolean paid, Date deadline
+						invoice.getId(),
+						invoice.getCustomer().getId(),
+						invoice.getDate(),
+						invoice.getItems().size(),
+						invoice.getTotalCost(),
+						invoice.isRequested(),
+						invoice.isPaid(),
+						invoice.getDeadline()
+				));
+
+		}
+	}
 
 	public ObservableList<tableObject> getTable(){
-		ObservableList<tableObject> tablelist = FXCollections.observableArrayList();
-
-		for (Invoice invoice: getTableValues()) {
-			tablelist.add(new tableObject(//int invoiceid, int customerid, Date invoicedate, int items, int totalcost, Boolean requested, Boolean paid, Date deadline
-					invoice.getId(),
-					invoice.getCustomer().getId(),
-					invoice.getDate(),
-					invoice.getItems().size(),
-					invoice.getTotalCost(),
-					invoice.isRequested(),
-					invoice.isPaid(),
-					invoice.getDeadline()
-			));
-		}
 		return tablelist;
 	}
 
 	public AdvisorController() {
-
 		//get invoices and add to list
 		InvoiceRepoImpl getAllInvoices = new InvoiceRepoImpl();
 		ResultSet result = getAllInvoices.read();
 		try {
-			if (result.next()) {//int id, boolean paid, boolean requested
+			while(result.next()) {//int id, boolean paid, boolean requested
+				System.out.println(">" + result.getInt("ID"));
 				this.list.put(result.getInt("ID"),
 						new Invoice(result.getInt("ID"),
 							result.getBoolean("paid"),
@@ -93,12 +104,15 @@ public class AdvisorController {
 							result.getInt("CustomerID"),
 							result.getString("purchaseDate")
 				));
+
 			}
 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		getAllInvoices.closeconn();
+		//System.out.println(list.size());
+		createTable();
 	}
 
 }

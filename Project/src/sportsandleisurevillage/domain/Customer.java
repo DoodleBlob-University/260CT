@@ -17,13 +17,6 @@ public class Customer {
 		return this.email;
 	}
 
-	public void requestInvoice(){
-		// TODO
-	}
-
-
-
-
 	public Customer(int id, String name, String email) {
 		this.id = id;
 		this.name = name;

@@ -47,7 +47,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="27.0" layoutY="77.0" onAction="#searchFilterAction" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0" />
+            <TextField fx:id="searchbox" layoutX="27.0" layoutY="77.0" onKeyReleased="#searchFilterAction" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0" />
             <ChoiceBox fx:id="searchoptions" layoutX="241.0" layoutY="90.0" prefHeight="31.0" prefWidth="85.0" AnchorPane.leftAnchor="241.0" AnchorPane.topAnchor="90.0">
                 <!-- choices -->
             </ChoiceBox>
@@ -68,13 +68,13 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <DatePicker fx:id="datepickerfrom" layoutX="16.0" layoutY="14.0" onAction="#searchFilterAction" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <DatePicker fx:id="datepickerfrom" layoutX="16.0" layoutY="14.0" onAction="#reFilter" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                               <Label layoutX="24.0" layoutY="24.0" text="To:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="50.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <DatePicker fx:id="datepickerto" layoutX="16.0" layoutY="68.0" onAction="#searchFilterAction" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="50.0" />
+                              <DatePicker fx:id="datepickerto" layoutX="16.0" layoutY="68.0" onAction="#reFilter" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="50.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -88,13 +88,13 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="pricepickerfrom" onAction="#searchFilterAction" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <TextField fx:id="pricepickerfrom" onAction="#reFilter" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                               <Label layoutX="23.0" layoutY="23.0" text="To" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="40.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="pricepickerto" layoutX="62.0" layoutY="27.0" onAction="#searchFilterAction" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
+                              <TextField fx:id="pricepickerto" layoutX="62.0" layoutY="27.0" onAction="#reFilter" prefHeight="31.0" prefWidth="210.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
                            </children></AnchorPane>
                   </content>
                 </TitledPane>
@@ -102,9 +102,9 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="294.0">
                            <children>
-                              <CheckBox fx:id="requestbox" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchFilterAction" text="Requested" />
-                              <CheckBox fx:id="paidbox" layoutX="166.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchFilterAction" text="Paid" />
-                              <CheckBox fx:id="overduebox" layoutX="23.0" layoutY="47.0" mnemonicParsing="false" onAction="#searchFilterAction" text="Overdue" />
+                              <CheckBox fx:id="requestbox" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#reFilter" text="Requested" />
+                              <CheckBox fx:id="paidbox" layoutX="166.0" layoutY="14.0" mnemonicParsing="false" onAction="#reFilter" text="Paid" />
+                              <CheckBox fx:id="overduebox" layoutX="23.0" layoutY="47.0" mnemonicParsing="false" onAction="#reFilter" text="Overdue" />
                            </children>
                         </AnchorPane>
                      </content>
