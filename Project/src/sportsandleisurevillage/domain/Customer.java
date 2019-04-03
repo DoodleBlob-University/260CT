@@ -13,6 +13,9 @@ public class Customer {
 	public String getName() {
 		return this.name;
 	}
+	public String getEmail() {
+		return this.email;
+	}
 
 	public void requestInvoice(){
 		// TODO

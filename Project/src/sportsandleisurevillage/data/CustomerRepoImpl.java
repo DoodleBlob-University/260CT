@@ -34,13 +34,11 @@ public class CustomerRepoImpl implements Repo {
     }
 
     @Override
-    public void write() {
-
+    public void delete() {
     }
 
     @Override
     public void update() {
-
     }
 
     @Override

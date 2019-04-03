@@ -1,9 +1,13 @@
 package sportsandleisurevillage.ui;
 
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import sportsandleisurevillage.business.AdvisorController;
 import sportsandleisurevillage.domain.Invoice;
+import sportsandleisurevillage.business.tableObject;
 
-import javafx.scene.control.TableColumn;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,46 +16,66 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 
-import javax.swing.text.TableView;
 import java.lang.reflect.Member;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AdvisorUI implements Initializable {
 
-	@FXML private TableColumn invoicecol;
-
 	private AdvisorController control = new AdvisorController();
 
-	@FXML
-	private ChoiceBox<String> searchoptions;
+	//table
+	@FXML private TableView<tableObject> table;
+	@FXML private TableColumn<Invoice, Integer> Invoicecol;
+	@FXML private TableColumn<Invoice, Integer> Customercol;
+	@FXML private TableColumn<Invoice, String> Datecol;
+	@FXML private TableColumn<Invoice, Integer> Itemcol;
+	@FXML private TableColumn<Invoice, Integer> Costcol;
+	@FXML private TableColumn<Invoice, Boolean> Requestcol;
+	@FXML private TableColumn<Invoice, Boolean> Paidcol;
+	@FXML private TableColumn<Invoice, String> Deadlinecol;
 
-	@FXML
-	private TableView table;
+	@FXML private ChoiceBox<String> searchoptions;
 
-
-	private ObservableList<String> tablelist;
-
-	@FXML
-	private void requestbutton(ActionEvent e) {
-		int selected = 0;// TODO
-		control.requestInvoice(selected);
+	private int getSelectedRow(){
+		int selected = 0;
+		try{
+			selected = table.getSelectionModel().getSelectedItem().getInvoiceid();
+		}catch (NullPointerException err){//row not selected
+		}
+		return selected;
 	}
 
-	@FXML
-	private void paidbutton(ActionEvent e) {
-		int selected = 0;// TODO
-		control.markInvoiceAsPaid(selected);
+	@FXML private void requestbutton(ActionEvent e) {
+		int selectedRow = getSelectedRow();
+		if(selectedRow != 0) {
+			control.requestInvoice(getSelectedRow());
+		}
+		table.setItems(control.getTable()); //refresh table
+		searchFilterAction(new ActionEvent()); //reapply search+filter
 	}
 
-	@FXML
-	private void deletebutton(ActionEvent e) {
-		int selected = 0;// TODO
-		control.deleteInvoice(selected);
+	@FXML private void paidbutton(ActionEvent e) {
+		int selectedRow = getSelectedRow();
+		if(selectedRow != 0) {
+			control.markInvoiceAsPaid(selectedRow);
+		}
+		table.setItems(control.getTable()); //refresh table
+		searchFilterAction(new ActionEvent()); //reapply search+filter
 	}
 
-	@FXML
-	private void searchFilterAction(ActionEvent e) {
+	@FXML private void deletebutton(ActionEvent e) {
+		int selectedRow = getSelectedRow();
+		if(selectedRow != 0) {
+			control.deleteInvoice(getSelectedRow());
+		}
+		table.setItems(control.getTable()); //refresh table
+		searchFilterAction(new ActionEvent()); //reapply search+filter
+	}
+
+	@FXML private void searchFilterAction(ActionEvent e) {
 		/*
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
@@ -66,9 +90,6 @@ public class AdvisorUI implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		ObservableList<Invoice> invoices = FXCollections.observableArrayList(control.getTableValues());
-
-
 
 		//choice box
 		ObservableList<String> options = FXCollections.observableArrayList("Invoice ID","Customer ID", "Customer Name");
@@ -78,10 +99,18 @@ public class AdvisorUI implements Initializable {
 				(ObservableValue<? extends String> observable, String oldValue, String newValue) -> searchFilterAction(new ActionEvent())
 		);
 
+		//table
+		Invoicecol.setCellValueFactory(new PropertyValueFactory<>("invoiceid"));
+		Customercol.setCellValueFactory(new PropertyValueFactory<>("customerid"));
+		Datecol.setCellValueFactory(new PropertyValueFactory<>("invoicedate"));
+		Itemcol.setCellValueFactory(new PropertyValueFactory<>("items"));
+		Costcol.setCellValueFactory(new PropertyValueFactory<>("totalcost"));
+		Requestcol.setCellValueFactory(new PropertyValueFactory<>("requested"));
+		Paidcol.setCellValueFactory(new PropertyValueFactory<>("paid"));
+		Deadlinecol.setCellValueFactory(new PropertyValueFactory<>("deadline"));
 
-		//invoicecol.setCellValueFactory(new PropertyValueFactory<>());
-		//tablelist = FXCollections.observableArrayList(control.getTableValues());
-		//table.setItems(tablelist);
+		table.setItems(control.getTable());
+
 	}
 
 }

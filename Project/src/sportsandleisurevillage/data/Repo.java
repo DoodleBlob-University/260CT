@@ -10,7 +10,7 @@ public interface Repo {
 	String password = "Password1234";
 
 	ResultSet read();
-	void write();
+	void delete();
 	void update();
 	void closeconn();
 }

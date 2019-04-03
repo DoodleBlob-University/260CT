@@ -20,6 +20,31 @@ public class Invoice {
 	public int getId() {
 		return this.id;
 	}
+	public Customer getCustomer(){
+		return this.customer;
+	}
+	public ArrayList<Booking> getItems() {
+		return this.list;
+	}
+	public boolean isPaid() {
+		return this.paid;
+	}
+	public boolean isRequested() {
+		return this.requested;
+	}
+	public Date getDate() {
+		return this.purchaseDate;
+	}
+	public Date getDeadline() {
+		return deadline;
+	}
+
+	public void setPaid(boolean value) {
+		this.paid = value;
+	}
+	public void setRequest(boolean value) {
+		this.requested = value;
+	}
 
 	private Date calcDeadline() {//booking date + 30 days
 		Calendar cal = Calendar.getInstance();
@@ -28,28 +53,12 @@ public class Invoice {
 		return cal.getTime();//return new date
 	}
 
-	public Date getDeadline() {
-		return deadline;
-	}
-
 	public int getTotalCost() {
 		int cost = 0;
 		for (Booking book: list) {
 			cost += book.getCost();
 		}
 		return cost;
-	}
-
-	public boolean isPaid() {
-		return this.paid;
-	}
-
-	public boolean isRequested() {
-		return this.requested;
-	}
-
-	public ArrayList<Booking> getItems() {
-		return this.list;
 	}
 
 	private void getCustomerInfo(int customerId){
@@ -63,7 +72,6 @@ public class Invoice {
 			e.printStackTrace();
 		}
 		getCustomerInfo.closeconn();
-		getCustomerInfo = null;
 	}
 
 	private void getBookingInfo(){
@@ -80,7 +88,6 @@ public class Invoice {
 			e.printStackTrace();
 		}
 		getBookingInfo.closeconn();
-		getBookingInfo = null;
 	}
 
 	public Invoice(int id, boolean paid, boolean requested, int customerId, String purchaseDate) {
@@ -97,10 +104,6 @@ public class Invoice {
 
 		//query all bookings related to invoice + create list of instances + assign values
 		getBookingInfo();
-	}
-
-	public void setPaid(boolean value) {
-		this.paid = value;
 	}
 
 }

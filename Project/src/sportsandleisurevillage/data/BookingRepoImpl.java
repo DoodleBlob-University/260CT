@@ -33,7 +33,7 @@ public class BookingRepoImpl implements Repo {
     }
 
     @Override
-    public void write() {
+    public void delete() {
 
     }
 
